@@ -1,21 +1,25 @@
+import { HashTags } from '@/components/HashTags'
 import { PostForm } from '@/components/PostForm'
 import { PostList } from '@/components/PostList'
+import { getHashtags } from '@/dummyData'
 
 export default function Home() {
   const isCurrentUser = true
   return <main>{isCurrentUser ? <AppTop /> : <Landing />}</main>
 }
 
-const AppTop = () => {
+const AppTop = async () => {
+  const hashtags = await getHashtags()
+
   return (
     <>
       <div className="side">
-        <HashTags />
+        <HashTags hashtags={hashtags} />
         <Settings />
       </div>
       <div className="middle">
         <PostList />
-        <PostForm />
+        <PostForm hashtags={hashtags} />
       </div>
     </>
   )
@@ -25,17 +29,6 @@ const Settings = () => {
   return (
     <div className="setting">
       <div className="logout">Log out</div>
-    </div>
-  )
-}
-
-const HashTags = () => {
-  const hashtags = ['all', '#food', '#programming']
-  return (
-    <div className="hashs">
-      {hashtags.map((tag, index) => (
-        <li key={index}>{tag}</li>
-      ))}
     </div>
   )
 }

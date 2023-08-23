@@ -7,7 +7,7 @@ import dynamic from 'next/dynamic'
 const WyswygEditor = dynamic(() => import('../components/WyswygEditor'), {
   ssr: false,
 })
-export const PostForm = () => {
+export const PostForm = ({ hashtags }) => {
   const [showChild, setShowChild] = useState(false)
   useEffect(() => {
     setShowChild(true) // wait window.document defined
@@ -21,8 +21,11 @@ export const PostForm = () => {
     <form action={addPost} className="post">
       <WyswygEditor />
       <select name="hashtag" id="hashtag">
-        <option value="programming">programming</option>
-        <option value="food">food</option>
+        {hashtags.map((tag, i) => (
+          <option key={i} value={tag}>
+            {tag}
+          </option>
+        ))}
       </select>
       <button type="submit">send</button>
     </form>
