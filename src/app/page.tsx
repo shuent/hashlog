@@ -1,7 +1,7 @@
 import { HashTags } from '@/components/HashTags'
 import { PostForm } from '@/components/PostForm'
 import { PostList } from '@/components/PostList'
-import { getHashtags } from '@/dummyData'
+import { getHashtags, getPosts } from '@/db'
 
 export default function Home() {
   const isCurrentUser = true
@@ -10,6 +10,7 @@ export default function Home() {
 
 const AppTop = async () => {
   const hashtags = await getHashtags()
+  const posts = await getPosts()
 
   return (
     <>
@@ -18,7 +19,7 @@ const AppTop = async () => {
         <Settings />
       </div>
       <div className="middle">
-        <PostList />
+        <PostList posts={posts} />
         <PostForm hashtags={hashtags} />
       </div>
     </>

@@ -1,4 +1,4 @@
-import { addHashtag } from '@/actions/hashtagActions'
+import { addHashtagAction } from '@/actions/hashtagActions'
 
 export const HashTags = ({ hashtags }) => {
   return (
@@ -9,7 +9,7 @@ export const HashTags = ({ hashtags }) => {
           <li key={index}>{tag}</li>
         ))}
       </ul>
-      <form action={addHashtag}>
+      <form action={addHashtagAction}>
         <input type="text" name="hashtag" placeholder="add tag" />
         <button type="submit">add</button>
       </form>

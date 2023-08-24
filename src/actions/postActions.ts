@@ -1,16 +1,17 @@
 'use server'
-import { posts } from '@/dummyData'
-import { revalidatePath } from 'next/cache'
 
-export async function addPost(data: FormData) {
-  const time = new Date().toLocaleString()
+import { revalidatePath } from 'next/cache'
+import { addPost } from '@/db'
+import { convertHtmlToMD } from '@/utils'
+
+export async function addPostAction(data: FormData) {
   const hashtag = data.get('hashtag')?.toString() ?? ''
-  const content = data.get('rawText')?.toString() ?? ''
+  const rawText = data.get('rawText')?.toString() ?? ''
   const newPost = {
-    time,
     hashtag,
-    content,
+    body: rawText,
   }
-  posts.push(newPost)
+  console.log(newPost)
+  await addPost(newPost)
   revalidatePath('/')
 }

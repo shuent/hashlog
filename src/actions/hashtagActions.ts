@@ -1,10 +1,11 @@
 'use server'
-import { hashtags } from '@/dummyData'
+
+import { addHashtag } from '@/db'
 import { revalidatePath } from 'next/cache'
 
-export async function addHashtag(data: FormData) {
+export async function addHashtagAction(data: FormData) {
   const item = data.get('hashtag')?.toString()
   if (!item) return
-  hashtags.push(item)
+  await addHashtag(item)
   revalidatePath('/')
 }

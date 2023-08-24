@@ -38,6 +38,7 @@ const QuillMarkdownEditor = () => {
     const quillMarkdown = new QuillMarkdown(editor, markdownOptions)
 
     editor.on('text-change', () => {
+      // TODO convert pre to pre code
       const content = editor.root.innerHTML
       hiddenRef.current?.setAttribute('value', content)
     })
