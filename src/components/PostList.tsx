@@ -6,17 +6,19 @@ export const PostList = async ({ posts }) => {
   return (
     <ul className="posts">
       {posts.map((post, index) => (
-        <li key={index}>
+        <li key={index} className="flex gap-4 mb-4">
           <div className="time">{formatDateTime(post.created_at)}</div>
-          <div className="hashtag">{post.hashtag}</div>
-          <div className="body">
-            <ReactMarkdown
-              remarkPlugins={[remarkBreaks, remarkGfm]}
-              disallowedElements={['h1', 'h2', 'h3', 'h4', 'h5', 'h6']}
-              unwrapDisallowed={true}
-            >
-              {post.body}
-            </ReactMarkdown>
+          <div>
+            <div className="hashtag">{post.hashtag}</div>
+            <div className="body">
+              <ReactMarkdown
+                remarkPlugins={[remarkBreaks, remarkGfm]}
+                disallowedElements={['h1', 'h2', 'h3', 'h4', 'h5', 'h6']}
+                unwrapDisallowed={true}
+              >
+                {post.body}
+              </ReactMarkdown>
+            </div>
           </div>
         </li>
       ))}
