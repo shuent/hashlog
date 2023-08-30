@@ -1,6 +1,6 @@
 namespace NodeJS {
   interface ProcessEnv {
-    SUPABASE_URL: string
-    SUPABASE_ANONKEY: string
+    NEXT_PUBLIC_SUPABASE_URL: string
+    NEXT_PUBLIC_SUPABASE_ANON_KEY: string
   }
 }

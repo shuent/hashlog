@@ -1,20 +1,29 @@
 'use client'
 import { addPostAction } from '@/actions/postActions'
+import { useRef } from 'react'
 
-export const PostForm = ({ hashtags }) => {
+export const PostForm = ({ hashtags, currentTag }) => {
+  const formRef = useRef<HTMLFormElement>(null)
   const handleSubmit = (data: FormData) => {
     addPostAction(data)
+    formRef.current?.reset()
   }
 
   return (
     <form
       action={handleSubmit}
       className="flex flex-col gap-1 border border-slate-300 rounded-md p-1 mt-1"
+      ref={formRef}
     >
       <textarea name="rawText" rows={1} className="max-h-64 p-2" />
       <hr />
       <div className="basis-auto flex justify-between">
-        <select name="hashtag" id="hashtag" className="">
+        <select
+          name="hashtag"
+          id="hashtag"
+          className=""
+          defaultValue={currentTag}
+        >
           {hashtags.map((tag, i) => (
             <option key={i} value={tag}>
               {tag}
