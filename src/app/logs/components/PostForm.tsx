@@ -2,10 +2,12 @@
 import { addPostAction } from '@/actions/postActions'
 import { useRef } from 'react'
 
-export const PostForm = ({ hashtags, currentTag }) => {
+type Props = { hashtags: []; currentTag: any; notifyMutate: () => void }
+export const PostForm = ({ hashtags, currentTag, notifyMutate }: Props) => {
   const formRef = useRef<HTMLFormElement>(null)
-  const handleSubmit = (data: FormData) => {
-    addPostAction(data)
+  const handleSubmit = async (data: FormData) => {
+    await addPostAction(data)
+    notifyMutate()
     formRef.current?.reset()
   }
 

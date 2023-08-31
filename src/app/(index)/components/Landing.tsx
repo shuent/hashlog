@@ -1,18 +1,38 @@
 'use client'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import Image from 'next/image'
+import screenTop from './screenTop.webp'
+import Link from 'next/link'
 
 export const Landing = () => {
   return (
     <>
-      <div className="h-screen flex flex-col pt-72 bg-slate-800 text-white">
+      <div className="flex flex-col pt-36 bg-slate-800 text-white">
         <div className="mx-auto flex flex-col items-center gap-8">
-          <div className="">
-            <h1 className="mb-4 text-6xl font-bold">
-              作業ログをタイムラインに記録
-            </h1>
-          </div>
+          <p className="mb-4 text-4xl font-mono font-light">Hash Log</p>
+          <p className="mb-4 text-7xl font-bold text-transparent bg-clip-text  bg-[conic-gradient(at_top,_var(--tw-gradient-stops))] from-blue-400 via-zinc-100 to-cyan-100">
+            作業ログをタイムラインに記録
+          </p>
+
           <div className="login">
             <LoginGoogle />
+          </div>
+          <div>
+            <Image
+              className="max-w-screen-lg"
+              src={screenTop}
+              alt={'app capture'}
+            />
+          </div>
+          <div className="mb-4">
+            <Link
+              className="hover:underline"
+              href={
+                'https://docs.google.com/forms/d/e/1FAIpQLSeuGuk4zxDeDrPuRk8O8MEEfixBFr1Fw8U4j3HEjLT9hAjw_w/viewform?usp=sf_link'
+              }
+            >
+              お問い合わせ
+            </Link>
           </div>
         </div>
       </div>

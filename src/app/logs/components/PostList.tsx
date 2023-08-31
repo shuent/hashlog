@@ -1,11 +1,14 @@
+'use client'
+
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown'
 import remarkBreaks from 'remark-breaks'
 import remarkGfm from 'remark-gfm'
 
-export const PostList = async ({ posts, hasCurrentTag }) => {
+type Props = { posts: any[]; showTag: boolean }
+export const PostList = ({ posts, showTag }: Props) => {
   if (posts.length === 0) return <div>no posts yet (T﹏T)</div>
   return (
-    <ul className="posts overflow-auto flex flex-col-reverse">
+    <ul className="flex flex-col-reverse">
       {posts.map((post, index) => (
         <li key={index} className="flex items-baseline gap-4 mb-4">
           <div className="w-16 flex-none flex flex-col items-end">
@@ -25,7 +28,7 @@ export const PostList = async ({ posts, hasCurrentTag }) => {
                 {post.body}
               </ReactMarkdown>
             </div>
-            {!hasCurrentTag && (
+            {showTag && (
               <div className="inline-block hashtag text-sm text-slate-400 border border-slate-200 rounded-md px-1 py-0.25">
                 {post.hashtag}
               </div>
@@ -37,7 +40,7 @@ export const PostList = async ({ posts, hasCurrentTag }) => {
   )
 }
 
-function formatDateTime(dateString) {
+function formatDateTime(dateString: string) {
   const now = new Date()
   const date = new Date(dateString)
 
