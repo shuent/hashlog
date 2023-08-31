@@ -7,6 +7,8 @@ import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { PostContainer } from './components/PostContainer'
 
+export const dynamic = 'force-dynamic'
+
 const AppTop = async ({ searchParams }: any) => {
   // auth
   const supabase = createServerComponentClient({ cookies })
